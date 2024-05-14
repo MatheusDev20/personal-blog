@@ -3,7 +3,6 @@
 import { QueryParams, SanityDocument } from "next-sanity"
 import { notFound } from "next/navigation"
 
-
 import Post from '@/app/blog/components/post'
 import { POSTS_QUERY, POST_QUERY } from "../../../../sanity/lib/queries"
 import { sanityFetch } from "../../../../sanity/lib/fetch"
@@ -27,5 +26,6 @@ export default async function Page({ params }: { params: QueryParams }) {
   if (!post) {
     return notFound()
   }
+
   return <Post post={post} />
 }

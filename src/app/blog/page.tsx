@@ -5,11 +5,18 @@ import { SanityDocument } from "next-sanity"
 import Posts from "./components/display"
 import { sanityFetch } from "../../../sanity/lib/fetch"
 import { POSTS_QUERY } from "../../../sanity/lib/queries"
+import Head from "next/head"
+import { Header } from "./components/header"
 
 export default async function Page() {
   const posts = await sanityFetch<SanityDocument[]>({
     query: POSTS_QUERY,
   })
 
-  return <Posts posts={posts} />
+  return (    
+    <>
+      <Header />
+      {/* <Posts posts={posts} /> */}
+    </> 
+  )
 }
