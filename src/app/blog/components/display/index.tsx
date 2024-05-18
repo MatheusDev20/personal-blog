@@ -1,19 +1,16 @@
 // ./components/Posts.tsx
 
 import { SanityDocument } from 'next-sanity'
-import Link from 'next/link'
+
+import { PostCard } from '../post-card'
 
 export default function Posts({ posts }: { posts: SanityDocument[] }) {
   if (!posts.length) return
+
   return (
-    <main className="container mx-auto flex flex-col border">
+    <main className="container mx-auto flex flex-col gap-8">
       {posts.map((post) => (
-        <>
-          <Link key={post._id} href={`/blog/${post.slug.current}`}>
-            <h2 className="p-4 hover:bg-blue-50">{post.title}</h2>
-          </Link>
-          {/* <main>{post.body}</main> */}
-        </>
+        <PostCard post={post} key={post._id} />
       ))}
     </main>
   )
