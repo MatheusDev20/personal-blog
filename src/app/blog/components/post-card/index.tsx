@@ -1,13 +1,15 @@
 import { SanityDocument } from 'next-sanity'
 import Image from 'next/image'
-import { urlFor } from '@/app/utils'
+import { formatDate, urlFor } from '@/app/utils'
 import Link from 'next/link'
+import { ClockIcon } from '@/app/icons'
 
 type Props = {
   post: SanityDocument
 }
 export const PostCard = ({ post }: Props) => {
-  const { mainImage } = post
+  const { mainImage, _createdAt } = post
+
   return (
     <Link href={`/blog/${post.slug.current}`}>
       <section className="border-dsl-gray-200 group flex h-[96px] rounded-[0.375rem] border-[1px] border-solid shadow-md transition-shadow duration-300 hover:bg-[#0a0a0a]">
@@ -18,10 +20,14 @@ export const PostCard = ({ post }: Props) => {
           height={300}
           alt={mainImage.alt || ''}
         />
-        <div className="ml-8 flex min-w-[30%] items-center justify-start self-center px-4 ">
+        <div className="ml-8 flex  w-[100%] items-center justify-between self-center px-4">
           <span className="font-medium leading-snug text-white group-hover:text-main-blue">
             {post.title}
           </span>
+          <div className="flex items-center gap-4">
+            <span>{formatDate(_createdAt, 'pt')}</span>
+            <ClockIcon classStyles="h-5 w-5 text-white" />
+          </div>
         </div>
       </section>
     </Link>

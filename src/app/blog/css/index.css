@@ -1,6 +1,14 @@
+@tailwind base;
+
 .blog-root {
   background-color: #000;
   height: 100vh;
   position: relative;
   max-width: 100vw;
+}
+
+@layer base {
+  span {
+    @apply text-white
+  }
 }
